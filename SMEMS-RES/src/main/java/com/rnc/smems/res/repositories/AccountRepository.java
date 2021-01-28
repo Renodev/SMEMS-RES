@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 
 import com.rnc.smems.res.entities.Account;
+import com.rnc.smems.res.enums.accountRole;
 
 public class AccountRepository {
 	
@@ -42,6 +43,13 @@ public class AccountRepository {
 		} catch (Exception e) {
 			return null;
 		}
+	}
+	
+	public List<Account> findByAccountRole (accountRole accountrole) {
+		String str = "select t from %s t where t.erase = false and  t.accountRole =  '"+accountrole.toString()+"'";
+		String sql = String.format(str, Account.class.getSimpleName());
+		TypedQuery<Account> query = entityManager.createQuery(sql, Account.class);
+		return query.getResultList();
 	}
 	
 	public List<Account> findAll() {

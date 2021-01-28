@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 
 import com.rnc.smems.res.entities.Account;
+import com.rnc.smems.res.enums.accountRole;
 import com.rnc.smems.res.repositories.AccountRepository;
 
 @LocalBean
@@ -35,6 +36,11 @@ public class AccountService {
 	
 	public Account findByUserNameAndPassword (String username, String password) {
 		return accountRepository.findByUserNameAndPassword(username, password);
+	}
+	
+	public List<Account> findByAccountRole(accountRole accountrole){
+		return accountRepository.findByAccountRole(accountrole);
+		
 	}
 	
 	public List<Account> findAll() {
