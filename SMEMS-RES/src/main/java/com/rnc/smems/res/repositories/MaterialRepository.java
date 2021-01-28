@@ -1,5 +1,6 @@
 package com.rnc.smems.res.repositories;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -30,6 +31,13 @@ public class MaterialRepository {
 		String sql = String.format(str, Material.class.getSimpleName());
 		TypedQuery<Material> query = entityManager.createQuery(sql, Material.class);
 		return query.getSingleResult();
+	}
+	
+	public List<Material>  findByDate (String date) {
+		String str = "select t from %s t where t.erase = false and t.date = '"+date+"'";
+		String sql = String.format(str, Material.class.getSimpleName());
+		TypedQuery<Material> query = entityManager.createQuery(sql, Material.class);
+		return query.getResultList();
 	}
 	
 	public List<Material>  findAll () {

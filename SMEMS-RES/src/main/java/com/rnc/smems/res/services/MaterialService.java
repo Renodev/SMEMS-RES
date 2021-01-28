@@ -33,6 +33,10 @@ public class MaterialService {
 		return materialRepository.findByID(id);
 	}
 	
+	public List<Material> findByDate (String date) {
+		return materialRepository.findByDate(date);
+	}
+	
 	public List<Material> findAll () {
 		return materialRepository.findAll();
 	}
